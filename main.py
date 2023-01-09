@@ -1,65 +1,94 @@
 import board
 
 from kb import KMKKeyboard
-
 from kmk.keys import KC
+from kmk.modules.combos import Chord, Combos, Sequence
+from kmk.modules.holdtap import HoldTapRepeat
 from kmk.modules.layers import Layers
 from kmk.modules.modtap import ModTap
 from kmk.scanners import DiodeOrientation
 
-keyboard = KMKKeyboard()
-
-keyboard.modules.append(Layers())
-
-modtap = ModTap()
-keyboard.modules.append(modtap)
-
-
+TAP_TIME = 200
 NONE = KC.NO
-QWERTY = KC.MO(0)
-LOWER = KC.MO(1)
-RAISE = KC.MO(2)
-ADJUST = KC.MO(3)
-CAE = KC.LCTL(KC.LALT(KC.END))
-CAD = KC.LCTL(KC.LALT(KC.DEL))
 
+combos = Combos()
+keyboard = KMKKeyboard()
+keyboard.modules.append(Layers())
+keyboard.modules.append(ModTap())
+keyboard.modules.append(combos)
 
+HOLDTAP_OPTIONS = {
+    "prefer_hold": False,
+    "tap_interrupted": False,
+    "tap_time": TAP_TIME,
+    "repeat": HoldTapRepeat.TAP,
+}
+SHIFT_OPTIONS = {
+    "prefer_hold": True,
+    "tap_interrupted": False,
+    "tap_time": 3000,
+    "repeat": HoldTapRepeat.TAP,
+}
 
-ZSFT = KC.MT(KC.Z, KC.LSFT, prefer_hold=True, tap_interrupted=False, tap_time=3000)
-SLSHSFT = KC.MT(KC.SLSH, KC.LSFT, prefer_hold=True, tap_interrupted=False, tap_time=3000)
-ALCTL = KC.MT(KC.A, KC.LCTRL, prefer_hold=False, tap_interrupted=False, tap_time=150)
-
-# flake8: noqa: E261
-keyboard.keymap = [
-    [ # QWERTY
-     KC.Q,  KC.W,  KC.E,     KC.R,    KC.T,     KC.Y,    KC.U,     KC.I,    KC.O,   KC.P,
-     ALCTL, KC.S,  KC.D,     KC.F,    KC.G,     KC.H,    KC.J,     KC.K,    KC.L,   KC.QUOT,
-     ZSFT,  KC.X,  KC.C,     KC.V,    KC.B,     KC.N,    KC.M,     KC.COMM, KC.DOT, SLSHSFT,
-     NONE, NONE,   KC.LCTL,  LOWER,   KC.SPACE, KC.BSPC, RAISE, KC.RALT,    NONE,  NONE,
-
-     ],
-    [ # LOWER
-     KC.N1,  KC.N2,  KC.N3,     KC.N4,    KC.N5,     KC.N6,    KC.N7,     KC.N8,    KC.N9,   KC.N0,
-     KC.TAB,  KC.LEFT,  KC.DOWN,     KC.UP,    KC.RIGHT,     KC.TRNS,    KC.MINUS,     KC.EQUAL,    KC.LBRC,   KC.RBRC,
-     KC.LCTL,  KC.GRAVE,  KC.LGUI,     KC.LALT,    KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS, 	KC.BSLS, KC.SCLN,
-     KC.NO, KC.NO, KC.TRNS,     KC.TRNS,    KC.TRNS, KC.ENTER, ADJUST,     KC.TRNS,    KC.NO,  KC.NO,
-
-     ],
-    [ # RAISE
-     KC.EXLM,  KC.AT,  KC.HASH,     KC.DLR,    KC.PERC,     KC.CIRC,    KC.AMPR,     KC.ASTR,    KC.LPRN,   KC.RPRN,
-     KC.ESC,  KC.TRNS,  KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS,    KC.UNDS,     KC.PLUS,    KC.LCBR,   KC.RCBR,
-     KC.CAPS,  KC.TILDE,  KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS, KC.PIPE, KC.COLN,
-     KC.NO, KC.NO, KC.TRNS,     ADJUST,    KC.TRNS, KC.ENTER, KC.TRNS,     KC.DEL,    KC.NO,  KC.NO,
-
-     ],
-     [ # ADJUST
-     KC.F1,  KC.F2,  KC.F3,     KC.F4,    KC.F5,     KC.F6,    KC.F7,     KC.F8,    KC.F9,   KC.F10,
-     KC.F11,  KC.F12,  KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS,    KC.TRNS,     CAE,    CAD,   CAD,
-     KC.TRNS,  KC.TRNS,  KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS, KC.TRNS, KC.TRNS,
-     KC.NO, KC.NO, KC.TRNS,     KC.TRNS,    KC.TRNS, KC.ENTER, KC.TRNS,     KC.TRNS,    KC.NO,  KC.NO,
-
-     ]
+combos.combos = [
+    Chord((KC.R, KC.T), KC.BSPC),
+    Chord((KC.Q, KC.W), KC.ESC),
+    Chord((KC.A, KC.B, KC.C), KC.LALT),
+    Chord((0, 1), KC.ESC, match_coord=True),
+    Chord((8, 9, 10), KC.MO(4), match_coord=True),
+    Sequence((KC.LEADER, KC.A, KC.B), KC.C),
+    Sequence(
+        (KC.E, KC.F), KC.MYKEY, timeout=500, per_key_timeout=False, fast_reset=False
+    ),
 ]
+
+CTL_A = KC.MT(KC.A, KC.LCTRL, *HOLDTAP_OPTIONS)
+CTL_SEMI = KC.MT(KC.SEMI, KC.RCTRL, *HOLDTAP_OPTIONS)
+
+ALT_TAB = KC.MT(KC.TAB, KC.ALT, *HOLDTAP_OPTIONS)
+ALT_G = KC.MT(KC.G, KC.ALT, *HOLDTAP_OPTIONS)
+ALT_H = KC.MT(KC.H, KC.ALT, *HOLDTAP_OPTIONS)
+
+SFT_F = KC.MT(KC.F, KC.LSFT, *SHIFT_OPTIONS)
+SFT_J = KC.MT(KC.J, KC.RSFT, *SHIFT_OPTIONS)
+
+NUM_SPC = KC.LT(2, KC.SPACE, *HOLDTAP_OPTIONS)
+NUM_S = KC.LT(2, KC.SPACE, *HOLDTAP_OPTIONS)
+NUM_L = KC.LT(2, KC.SPACE, *HOLDTAP_OPTIONS)
+
+CMD_ENT = KC.MT(KC.ENTER, KC.LGUI, *HOLDTAP_OPTIONS)
+CMD_S = KC.MT(KC.S, KC.LGUI, *HOLDTAP_OPTIONS)
+CMD_K = KC.MT(KC.K, KC.RGUI, *HOLDTAP_OPTIONS)
+
+SYM_BSPC = KC.LT(1, KC.BACKSPACE, *HOLDTAP_OPTIONS)
+
+# fmt: off
+BASE = [ # QWERTY
+  KC.Q,  KC.W,  KC.E,     KC.R,    KC.T,     KC.Y,     KC.U,     KC.I,    KC.O,   KC.P,
+  CTL_A, NUM_S, CMD_S,    SFT_F,   ALT_G,    ALT_H,    SFT_J,    CMD_K,   NUM_L,  CTL_SEMI,
+  KC.Z,  KC.X,  KC.C,     KC.V,    KC.B,     KC.N,     KC.M,     KC.COMM, KC.DOT, KC.SLSH,
+  NONE,  NONE,  KC.LALT,  CMD_ENT, NUM_SPC,  SYM_BSPC, ALT_TAB,  KC.RALT, NONE,   NONE,
+]
+SYMBOLS = [ # Symbols
+  KC.EXLM,  KC.AT,    KC.HASH,  KC.DLR,   KC.PERC,  KC.CARET, KC.AMPS, KC.STAR, NONE,    NONE,
+  KC.MINUS, KC.UNDER, KC.GRAVE, KC.SQT,   KC.DQT,   KC.COLN,  KC.LPAR, KC.RPAR, KC.LBKT, KC.RBKT,
+  KC.BSLH,  KC.PIPE,  KC.TILDE, KC.EQUAL, KC.PLUS,  KC.LBRC,  KC.RBRC, KC.LT, 	KC.GT,   KC.QMARK,
+  NONE,     NONE,     NONE,     KC.ENTER, KC.SPACE, KC.BSPC,  KC.TAB,  NONE,    NONE,    NONE,
+]
+NUMBERS = [ # Numbers
+  KC.EXLM,  KC.AT,  KC.HASH,     KC.DLR,    KC.PERC,     KC.CIRC,    KC.AMPR,     KC.ASTR,    KC.LPRN,   KC.RPRN,
+  KC.ESC,  KC.TRNS,  KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS,    KC.UNDS,     KC.PLUS,    KC.LCBR,   KC.RCBR,
+  KC.CAPS,  KC.TILDE,  KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS, KC.PIPE, KC.COLN,
+  KC.NO, KC.NO, KC.TRNS,     ADJUST,    KC.TRNS, KC.ENTER, KC.TRNS,     KC.DEL,    KC.NO,  KC.NO,
+]
+ADJUST = [ # ADJUST
+  KC.F1,  KC.F2,  KC.F3,     KC.F4,    KC.F5,     KC.F6,    KC.F7,     KC.F8,    KC.F9,   KC.F10,
+  KC.F11,  KC.F12,  KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS,    KC.TRNS,     CAE,    CAD,   CAD,
+  KC.TRNS,  KC.TRNS,  KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS,    KC.TRNS,     KC.TRNS, KC.TRNS, KC.TRNS,
+  KC.NO, KC.NO, KC.TRNS,     KC.TRNS,    KC.TRNS, KC.ENTER, KC.TRNS,     KC.TRNS,    KC.NO,  KC.NO,
+]
+# fmt: on
+keyboard.keymap = [BASE, SYMBOLS, NUMBERS, ADJUST]
 
 # Uncomment for Trackball
 # from kmk.modules.pimoroni_trackball import Trackball, TrackballMode
@@ -88,5 +117,5 @@ keyboard.keymap = [
 
 # keyboard.debug_enabled = True
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     keyboard.go()
