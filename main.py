@@ -2,16 +2,20 @@ import board
 
 from kb import KMKKeyboard
 from kmk.keys import KC
+from kmk.modules.combos import Chord, Combos, Sequence
 from kmk.modules.holdtap import HoldTap, HoldTapRepeat
 from kmk.modules.layers import Layers
 from kmk.scanners import DiodeOrientation
 
 keyboard = KMKKeyboard()
-
 keyboard.modules.append(Layers())
+keyboard.modules.append(HoldTap())
+combos = Combos()
+keyboard.modules.append(combos)
 
-holdtap = HoldTap()
-keyboard.modules.append(holdtap)
+combos.combos = [
+    Chord((KC.Q, KC.W), KC.ESC),
+]
 
 
 NONE = KC.NO
