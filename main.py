@@ -19,7 +19,7 @@ combos.combos = [
 
 
 NONE = KC.NO
-TAP_TIME = 300
+TAP_TIME = 200
 
 HOLDTAP_OPT = dict(
     prefer_hold=True,
