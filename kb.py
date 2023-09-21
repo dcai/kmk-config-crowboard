@@ -1,7 +1,12 @@
 import board
+import digitalio
 
 from kmk.kmk_keyboard import KMKKeyboard as _KMKKeyboard
 from kmk.scanners import DiodeOrientation
+
+#  led = digitalio.DigitalInOut(board.LED)
+#  led.direction = digitalio.Direction.OUTPUT
+#  led.value = True
 
 
 class KMKKeyboard(_KMKKeyboard):
