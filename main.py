@@ -1,6 +1,7 @@
 import board
 
 from kb import KMKKeyboard
+from kmk.extensions.media_keys import MediaKeys
 from kmk.keys import KC
 from kmk.modules.combos import Chord, Combos, Sequence
 from kmk.modules.holdtap import HoldTap, HoldTapRepeat
@@ -10,11 +11,14 @@ from kmk.scanners import DiodeOrientation
 keyboard = KMKKeyboard()
 keyboard.modules.append(Layers())
 keyboard.modules.append(HoldTap())
+keyboard.extensions.append(MediaKeys())
 combos = Combos()
 keyboard.modules.append(combos)
 
 combos.combos = [
     Chord((KC.Q, KC.W), KC.ESC),
+    Chord((KC.M, KC.LABK), KC.VOLD),
+    #  Chord((KC.RABK, KC.LABK), KC.VOLU),
 ]
 
 
@@ -48,10 +52,10 @@ TAB = KC.HT(KC.TAB, KC.LGUI, **HOLDTAP_OPT)
 # fmt: off
 keyboard.keymap = [
     [
-     KC.Q,  KC.W,  KC.E,  KC.R,  KC.T,         KC.Y,  KC.U,  KC.I,    KC.O,   KC.P,
-     A_CTL, S_NAV, D_GUI, F_SFT, G_OPT,        H_OPT, J_SFT, K_GUI,   L_NUM,   SCLN_CTL,
-     KC.Z,  KC.X,  KC.C,  KC.V,  KC.B,         KC.N,  KC.M,  KC.COMM, KC.DOT, SLSHSFT,
-     NONE,  NONE,  NONE,  ENTER, SPACE,        BSPC,  TAB,   NONE,    NONE,  NONE,
+     KC.Q,  KC.W,  KC.E,    KC.R,  KC.T,         KC.Y,  KC.U,  KC.I,    KC.O,   KC.P,
+     A_CTL, S_NAV, D_GUI,   F_SFT, G_OPT,        H_OPT, J_SFT, K_GUI,   L_NUM,   SCLN_CTL,
+     KC.Z,  KC.X,  KC.C,    KC.V,  KC.B,         KC.N,  KC.M,  KC.COMM, KC.DOT, SLSHSFT,
+     NONE,  NONE,  KC.VOLD, ENTER, SPACE,        BSPC,  TAB,   KC.VOLU, NONE,  NONE,
     ],
     [ # symbols
      KC.EXLM,  KC.AT,      KC.HASH,  KC.DLR,   KC.PERC,        KC.CIRC,    KC.AMPR,     KC.ASTR,    NONE, NONE,
