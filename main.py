@@ -1,11 +1,10 @@
-import board
-from kb import KMKKeyboard
 from kmk.extensions.media_keys import MediaKeys
 from kmk.keys import KC
-from kmk.modules.combos import Chord, Combos, Sequence
+from kmk.modules.combos import Chord, Combos
 from kmk.modules.holdtap import HoldTap, HoldTapRepeat
 from kmk.modules.layers import Layers
-from kmk.scanners import DiodeOrientation
+
+from kb import KMKKeyboard
 
 keyboard = KMKKeyboard()
 keyboard.modules.append(Layers())
@@ -16,8 +15,6 @@ keyboard.modules.append(combos)
 
 combos.combos = [
     Chord((KC.Q, KC.W), KC.ESC),
-    Chord((KC.M, KC.LABK), KC.VOLD),
-    #  Chord((KC.RABK, KC.LABK), KC.VOLU),
 ]
 
 
