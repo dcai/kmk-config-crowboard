@@ -62,14 +62,16 @@ keyboard.keymap = [
  ],
  # symbols
  [
- KC.EXLM, KC.AT,   KC.HASH, KC.DLR,   KC.PERC,      KC.CIRC, KC.AMPR, KC.ASTR, XXXX,    XXXX,
- KC.MINS, KC.UNDS, KC.GRV,  KC.QUOTE, KC.DQT,       KC.COLN, KC.LPRN, KC.RPRN, KC.LBRC, KC.RBRC,
- KC.BSLS, KC.PIPE, KC.TILD, KC.EQL,   KC.PLUS,      KC.LBRC, KC.RBRC, KC.LABK, KC.RABK, KC.QUES,
- #-------+--------+--------+---------+-------+_____+--------+--------+--------+--------+-------#
- XXXX,    XXXX,    ____,    ____,     ____,         ____,    ____,    ____,    XXXX,    XXXX,
+ #-------+--------+--------+---------+-------+______+--------+--------+--------+--------+-------#
+ KC.EXLM, KC.AT,   KC.HASH, KC.DLR,   KC.PERC,       KC.CIRC, KC.AMPR, KC.ASTR, XXXX,    XXXX,
+ KC.MINS, KC.UNDS, KC.GRV,  KC.QUOTE, KC.DQT,        KC.COLN, KC.LPRN, KC.RPRN, KC.LBRC, KC.RBRC,
+ KC.BSLS, KC.PIPE, KC.TILD, KC.EQL,   KC.PLUS,       KC.LBRC, KC.RBRC, KC.LABK, KC.RABK, KC.QUES,
+ #-------+--------+--------+---------+-------+______+--------+--------+--------+--------+-------#
+ XXXX,    XXXX,    ____,    ____,     ____,          ____,    ____,    ____,    XXXX,    XXXX,
  ],
  # numbers
  [
+ #-----+------+------+------+---------+______+--------+--------+--------+--------+----#
  KC.N1, KC.N2, KC.N3, KC.MINS, KC.ASTR,       XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
  KC.N4, KC.N5, KC.N6, KC.PLUS, KC.SLSH,       KC.LEFT, KC.DOWN, KC.UP,   KC.RGHT, XXXX,
  KC.N7, KC.N8, KC.N9, KC.N0,   KC.DOT,        KC.HOME, KC.PGDG, KC.PGUP, KC.END,  XXXX,
