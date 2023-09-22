@@ -21,7 +21,7 @@ combos.combos = [
 ]
 
 
-NONE = KC.NO
+XXXX = KC.NO
 TAP_TIME = 250
 
 HOLDTAP_OPT = dict(
@@ -50,7 +50,7 @@ TAB = KC.HT(KC.TAB, KC.LGUI, **HOLDTAP_OPT)
 
 VOLD = KC.VOLD
 VOLU = KC.VOLU
-TRNS = KC.TRNS
+____ = KC.TRNS
 
 
 # fmt: off
@@ -61,23 +61,23 @@ keyboard.keymap = [
  A_CTL, S_NAV, D_GUI, F_SFT, G_OPT,        H_OPT, J_SFT, K_GUI,   L_NUM,  SCLN_CTL,
  KC.Z,  KC.X,  KC.C,  KC.V,  KC.B,         KC.N,  KC.M,  KC.COMM, KC.DOT, SLSH_SFT,
  #-----+------+------+------+------+______+------+------+--------+-------+--------#
- NONE,  NONE,  VOLD,  ENTER, SPACE,        BSPC,  TAB,   VOLU,    NONE,   NONE,
+ XXXX,  XXXX,  VOLD,  ENTER, SPACE,        BSPC,  TAB,   VOLU,    XXXX,   XXXX,
  ],
  # symbols
  [
- KC.EXLM, KC.AT,   KC.HASH, KC.DLR,   KC.PERC,      KC.CIRC, KC.AMPR, KC.ASTR, NONE,    NONE,
+ KC.EXLM, KC.AT,   KC.HASH, KC.DLR,   KC.PERC,      KC.CIRC, KC.AMPR, KC.ASTR, XXXX,    XXXX,
  KC.MINS, KC.UNDS, KC.GRV,  KC.QUOTE, KC.DQT,       KC.COLN, KC.LPRN, KC.RPRN, KC.LBRC, KC.RBRC,
  KC.BSLS, KC.PIPE, KC.TILD, KC.EQL,   KC.PLUS,      KC.LBRC, KC.RBRC, KC.LABK, KC.RABK, KC.QUES,
  #-------+--------+--------+---------+-------+_____+--------+--------+--------+--------+-------#
- NONE,    NONE,    TRNS,    TRNS,     TRNS,         TRNS,    TRNS,    TRNS,    NONE,    NONE,
+ XXXX,    XXXX,    ____,    ____,     ____,         ____,    ____,    ____,    XXXX,    XXXX,
  ],
  # numbers
  [
- KC.N1, KC.N2, KC.N3, KC.MINS, KC.ASTR,       NONE,    NONE,    NONE,    NONE,    NONE,
- KC.N4, KC.N5, KC.N6, KC.PLUS, KC.SLSH,       KC.LEFT, KC.DOWN, KC.UP,   KC.RGHT, NONE,
- KC.N7, KC.N8, KC.N9, KC.N0,   KC.DOT,        KC.HOME, KC.PGDG, KC.PGUP, KC.END,  NONE,
+ KC.N1, KC.N2, KC.N3, KC.MINS, KC.ASTR,       XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
+ KC.N4, KC.N5, KC.N6, KC.PLUS, KC.SLSH,       KC.LEFT, KC.DOWN, KC.UP,   KC.RGHT, XXXX,
+ KC.N7, KC.N8, KC.N9, KC.N0,   KC.DOT,        KC.HOME, KC.PGDG, KC.PGUP, KC.END,  XXXX,
  #-----+------+------+------+---------+______+--------+--------+--------+--------+----#
- NONE,  NONE,  TRNS,  TRNS,    TRNS,          TRNS,    TRNS,    TRNS,    NONE,    NONE,
+ XXXX,  XXXX,  ____,  ____,    ____,          ____,    ____,    ____,    XXXX,    XXXX,
  ],
 ]
 # fmt: on
