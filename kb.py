@@ -1,6 +1,5 @@
 import board
-import digitalio
-
+#  import digitalio
 from kmk.kmk_keyboard import KMKKeyboard as _KMKKeyboard
 from kmk.scanners import DiodeOrientation
 
