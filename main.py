@@ -1,11 +1,10 @@
+from kb import KMKKeyboard
 from kmk.extensions.media_keys import MediaKeys
 from kmk.keys import KC
 from kmk.modules.capsword import CapsWord
 from kmk.modules.combos import Chord, Combos
 from kmk.modules.holdtap import HoldTap, HoldTapRepeat
 from kmk.modules.layers import Layers
-
-from kb import KMKKeyboard
 
 keyboard = KMKKeyboard()
 keyboard.modules.append(Layers())
@@ -56,6 +55,12 @@ SCLN_CTL = KC.HT(KC.SCLN, KC.RCTL, **HOLDTAP_OPT)
 
 # fmt: off
 keyboard.keymap = [
+ # [
+ #  KC.F, KC.F, KC.F, KC.F, KC.F,         KC.J, KC.J, KC.J, KC.J, KC.J,
+ #  KC.F, KC.F, KC.F, KC.F, KC.F,         KC.J, KC.J, KC.J, KC.J, KC.J,
+ #  KC.F, KC.F, KC.F, KC.F, KC.F,         KC.J, KC.J, KC.J, KC.J, KC.J,
+ #  KC.F, KC.F, KC.F, KC.F, KC.F,         KC.J, KC.J, KC.J, KC.J, KC.J,
+ # ],
  [
  #--------+--------+--------+--------+--------+******+--------+--------+--------+--------+-------#
   KC.Q,    KC.W,    KC.E,    KC.R,    KC.T,           KC.Y,    KC.U,    KC.I,    KC.O,    KC.P,
